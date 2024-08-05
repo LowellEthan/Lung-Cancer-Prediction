@@ -1,0 +1,25 @@
+---
+title: "About Me"
+about:
+  template: jolla
+  image-shape: round
+  image-width: 15em
+  links: 
+    - text: Github
+      icon: github
+      href: https://github.com/LowellEthan
+    - text: Email
+      icon: envelope
+      href: mailto:leethan8005@gmail.com
+    - text: Repository
+      icon: database
+      href: https://github.com/LowellEthan/Lung-Cancer-Prediction
+---
+
+My name is Lowell Ethan, I'm a rising junior at Oakdale High. I like to play basketball, make music, and am passionate about computer/data science.
+
+## The Project
+
+This project is to visualize, and better understand the Air Pollution in Correlation to Lung Cancer.
+
+This project was created as a part of [Kane’s Data Science Bootcamp](https://bootcamp.davidkane.info/).

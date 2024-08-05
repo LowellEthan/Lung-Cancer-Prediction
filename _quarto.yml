@@ -1,0 +1,21 @@
+project:
+  type: website
+
+website:
+  title: "Lung Cancer Prediction"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: models.qmd
+        text: Models
+      - href: about.qmd
+        text: Author
+      - href: source.qmd
+        text: Source
+
+format:
+  html:
+    theme: lux
+    css: styles.css
+    toc: true

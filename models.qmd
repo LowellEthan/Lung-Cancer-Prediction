@@ -1,5 +1,5 @@
 ---
-title: "Lung Cancer Prediction/Analysis"
+title: "Lung Cancer Prediction by Various Factors"
 author: "Lowell Ethan Xavier"
 format: html
 execute: 

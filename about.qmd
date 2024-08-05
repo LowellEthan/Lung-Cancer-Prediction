@@ -15,6 +15,7 @@ about:
       icon: database
       href: https://github.com/LowellEthan/Lung-Cancer-Prediction
 ---
+![profile-picture](smile.png){ width=200 }
 
 My name is Lowell Ethan, I'm a rising junior at Oakdale High. I like to play basketball, make music, and am passionate about computer/data science.
 

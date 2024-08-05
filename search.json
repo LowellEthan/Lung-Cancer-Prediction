@@ -4,7 +4,7 @@
     "href": "source.html",
     "title": "Source and Relevant Information",
     "section": "",
-    "text": "I used the Lung Cancer Prediction data-set from Kaggle to complete this model project. This data-set contains information on patients with lung cancer, including their age, gender, air pollution exposure, alcohol use, dust allergy, occupational hazards, genetic risk, chronic lung disease, balanced diet, obesity, smoking, passive smoker, chest pain, coughing of blood, fatigue, weight loss, shortness of breath, wheezing, swallowing difficulty, clubbing of finger nails and snoring.\nThe data-set contained clean data, as all individuals were actual patients part of a study publish in the journal Natural Medicine about Health Effects of Air Pollution in China. Read more about the article to find out about interesting details of how the study was done, and other conclusions that came out of it.\nTo learn more about the code, and technical aspect of the project, check out the Github Repository."
+    "text": "I used the Lung Cancer Prediction data-set from Kaggle to complete this model project. This data-set contains information on patients with lung cancer, including their age, gender, air pollution exposure, alcohol use, dust allergy, occupational hazards, genetic risk, chronic lung disease, balanced diet, obesity, smoking, passive smoker, chest pain, coughing of blood, fatigue, weight loss, shortness of breath, wheezing, swallowing difficulty, clubbing of finger nails and snoring.\nThe data-set contained clean data, as all individuals were actual patients part of a study publish in the journal Natural Medicine about Health Effects of Air Pollution in China. Read more about the article to find out about interesting details of how the study was done, and other conclusions that came out of it."
   },
   {
     "objectID": "index.html",
@@ -23,14 +23,14 @@
   {
     "objectID": "models.html",
     "href": "models.html",
-    "title": "Lung Cancer Prediction/Analysis",
+    "title": "Lung Cancer Prediction by Various Factors",
     "section": "",
     "text": "Lung Cancer is the 2nd most common cancer affecting the United States in 2024, understanding the causes and predicting the probability of it can allow for the demystification and prevention of the disease. To do so, modelling the data is a great way to visualize the outcomes."
   },
   {
     "objectID": "models.html#air-pollution-smoking-vs.-cancer-risk",
     "href": "models.html#air-pollution-smoking-vs.-cancer-risk",
-    "title": "Lung Cancer Prediction/Analysis",
+    "title": "Lung Cancer Prediction by Various Factors",
     "section": "Air Pollution + Smoking vs. Cancer Risk",
     "text": "Air Pollution + Smoking vs. Cancer Risk\nIt is a common know fact that smoking has a direct correlation to lung cancer, and one of the greatest determinators of whether or not one can get lung cancer.\n\nSmoking\nTo find the relationship between lung cancer and smoking to see just by how much it increases risk of getting Lung Cancer, a categorical model can be made:\n\nFormula \\[\\begin{equation}\n\\text{level} = \\alpha + \\beta_1 (\\text{smoking}) + \\epsilon\n\\end{equation}\\]\nTable\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\n1\n\n\n\n\nmu2_(Intercept)\n0.56\n0.29, 0.85\n\n\nmu3_(Intercept)\n-2.5\n-2.9, -2.1\n\n\nmu2_smoking\n-0.17\n-0.26, -0.09\n\n\nmu3_smoking\n0.59\n0.51, 0.67\n\n\n\n1\nCI = Credible Interval\n\n\n\n\n\n\n\n\n\nPlot of Posterior Prediction (Air Pollution)\n\n\n\n\n\n\n\n\n\n\nAs seen in the graph, the risk of lung cancer increases as the level of smoking increases, which is a well know fact, but something interesting happens when the prediction of lung cancer is seen with the level of air pollution.\n\n\nAir Pollution\nTo find the relationship between lung cancer and air pollution another categorical model can be made lke thus:\n\nFormula \\[\\begin{equation}\n\\text{level} = \\alpha + \\beta_1 (\\text{air\\_pollution}) + \\epsilon\n\\end{equation}\\]\nTable\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\n1\n\n\n\n\nmu2_(Intercept)\n-0.29\n-0.60, 0.05\n\n\nmu3_(Intercept)\n-4.6\n-5.3, -4.0\n\n\nmu2_air_pollution\n0.14\n0.03, 0.24\n\n\nmu3_air_pollution\n1.1\n1.0, 1.3\n\n\n\n1\nCI = Credible Interval\n\n\n\n\n\n\n\n\n\nPlot of Posterior Prediction (Smoking)\n\n\n\n\n\n\n\n\n\n\nComparing both posterior prediction graphs we can see that they are similiar in terms of trend and probability of risk of lung cancer, leading to an interesting revelation that…\n\nAir pollution level is as bad as smoking for probability of getting lung cancer"
   },
@@ -39,7 +39,7 @@
     "href": "about.html",
     "title": "About Me",
     "section": "",
-    "text": "My name is Lowell Ethan, I’m a rising junior at Oakdale High. I like to play basketball, make music, and am passionate about computer/data science."
+    "text": "profile-picture\nMy name is Lowell Ethan, I’m a rising junior at Oakdale High. I like to play basketball, make music, and am passionate about computer/data science."
   },
   {
     "objectID": "about.html#the-project",

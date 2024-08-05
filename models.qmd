@@ -1,5 +1,5 @@
 ---
-title: "Lung Cancer Prediction"
+title: "Lung Cancer Prediction/Analysis"
 author: "Lowell Ethan Xavier"
 format: html
 execute: 
@@ -46,10 +46,8 @@ lung <- read_csv("data/lung-cancer.csv") |>
     dry_cough = `Dry Cough`,
     snoring = Snoring,
     level = Level
-  ) |> mutate(gender = recode(gender, `1` = "Male", `2` = "Female")) |> drop_na()
+  ) |> mutate(gender = recode(gender, `1` = "Male", `2` = "Female"), level = recode(level, `Low` = 1, `Medium` = 2, `High` = 3))
 ```
-
-## Introduction
 
 Lung Cancer is the 2nd most common cancer affecting the United States in 2024, understanding the causes and predicting the probability of it can allow for the demystification and prevention of the disease. To do so, modelling the data is a great way to visualize the outcomes.
 
@@ -57,8 +55,8 @@ Lung Cancer is the 2nd most common cancer affecting the United States in 2024, u
 
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
 #| label: Air Pollution + Smoking Model
-#| cache: FALSE
-fit_pollution <- brm(
+#| cache: TRUE
+fit_pollute <- brm(
   formula = level ~ air_pollution,
   data = lung,
   family = categorical(), 
@@ -66,7 +64,7 @@ fit_pollution <- brm(
   silent = 2, 
   seed = 9)
 
-fit_smoking <- brm(
+fit_smoke <- brm(
   formula = level ~ smoking,
   data = lung,
   family = categorical(), 
@@ -77,79 +75,85 @@ fit_smoking <- brm(
 
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
 #| label: New Data Creation
-new_lung_air <- fit_pollution |> add_epred_draws(newdata = tibble(air_pollution = seq(1, 8, by = 1))) |> filter(!(.category %in% c("Medium")))
-new_lung_smoke <- fit_smoking |> add_epred_draws(newdata = tibble(smoking = seq(1, 8, by = 1))) |> filter(!(.category %in% c("Medium")))
+new_lung_air <- fit_pollute |> add_epred_draws(newdata = tibble(air_pollution = seq(1, 8, by = 1))) |> mutate(.category = recode(.category, `1` = "Low", `2` = "Medium", `3` = "High")) |> filter(!(.category %in% c("Medium")))
+new_lung_smoke <- fit_smoke |> add_epred_draws(newdata = tibble(smoking = seq(1, 8, by = 1))) |> mutate(.category = recode(.category, `1` = "Low", `2` = "Medium", `3` = "High")) |> filter(!(.category %in% c("Medium")))
 ```
 
+It is a common know fact that smoking has a direct correlation to lung cancer, and one of the greatest determinators of whether or not one can get lung cancer.
+
+### Smoking
+
+To find the relationship between lung cancer and smoking to see just by how much it increases risk of getting Lung Cancer, a categorical model can be made:
+
+1. Formula
+\begin{equation}
+\text{level} = \alpha + \beta_1 (\text{smoking}) + \epsilon
+\end{equation}
+
+2. Table
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
-#| label: Air Pollution + Smoking Model Plot 1
+#| label: Smoking Regression
 
-ggplot(new_lung_air, aes(x = as.factor(air_pollution), y = .epred, fill = .category)) +
-  geom_dots(aes(color = .category), show.legend = FALSE) +
-  geom_line(aes(x = air_pollution, y = .epred, color = .category), show.legend = FALSE) + 
-  labs(x = "Air Pollution Level", y = "Predicted Cancer Risk", title = "Distribution of Predicted Cancer Risk by Air Pollution Level", fill = "Cancer Risk", subtitle = "The predicted cancer risk increases as the air pollution level increases") +
-  theme_clean() + 
-  theme(
-    legend.position = c(0.8, 0.45), 
-    legend.text = element_text(size = 12),
-    legend.title = element_text(size = 14),
-    axis.text.y = element_blank(),
-    axis.ticks.y = element_blank(),
-    panel.grid.major.x = element_line(color = "grey80", linetype = "dotted"),
-    panel.grid.minor.x = element_line(color = "grey90", linetype = "dotted"))
+tbl_regression(fit_smoke)
 ```
 
+3. Plot of Posterior Prediction (Air Pollution)
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
 #| label: Air Pollution + Smoking Model Plot 2
 
 ggplot(new_lung_smoke, aes(x = as.factor(smoking), y = .epred, fill = .category)) +
-  geom_dots(aes(color = .category), show.legend = FALSE) +
-  geom_line(aes(x = smoking, y = .epred, color = .category), show.legend = FALSE) + 
+  geom_dots(aes(color = .category), show.legend = c(color = FALSE)) +
+  geom_line(aes(x = smoking, y = .epred, color = .category), show.legend = c(color = FALSE)) + 
   labs(x = "Smoking Level", y = "Predicted Cancer Risk", title = "Distribution of Predicted Cancer Risk by Smoking Level", fill = "Cancer Risk", subtitle = "The predicted cancer risk increases as the smoking level increases") +
   theme_clean() + 
   theme(
-    legend.position = c(0.8, 0.45), 
-    legend.text = element_text(size = 12),
-    legend.title = element_text(size = 14),
+    legend.position = c(0.8, 0.5),
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 8),
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank(),
     panel.grid.major.x = element_line(color = "grey80", linetype = "dotted"),
     panel.grid.minor.x = element_line(color = "grey90", linetype = "dotted"))
 ```
 
-## Gender vs. Cancer Risk
+As seen in the graph, the risk of lung cancer increases as the level of smoking increases, which is a well know fact, but something interesting happens when the prediction of lung cancer is seen with the level of air pollution.
 
+### Air Pollution
+
+To find the relationship between lung cancer and air pollution another categorical model can be made lke thus:
+
+1. Formula
+\begin{equation}
+\text{level} = \alpha + \beta_1 (\text{air\_pollution}) + \epsilon
+\end{equation}
+
+2. Table
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
-#| label: Gender Model
-#| cache: FALSE
+#| label: Air Pollution Regression
 
-fit_gender <- brm(
-  formula = level ~ gender,
-  data = lung,
-  family = categorical(),
-  silent = 2,
-  refresh = 0,
-  seed = 9)
+tbl_regression(fit_pollute)
 ```
 
+3. Plot of Posterior Prediction (Smoking)
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
-#| label: Gender Model Plot 1
+#| label: Air Pollution + Smoking Model Plot 1
 
-fit_gender |> 
-  add_epred_draws(newdata = tibble(gender = c("Female", "Male"))) |>
-  select(gender, .category, .epred) |>
-  filter(.category != "Medium") |>
-  ggplot(aes(x = .epred, fill = gender)) +
-    geom_histogram(bins = 100) +
-    facet_grid(~ .category) +
-    scale_x_continuous(
-      breaks = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-      labels = scales::percent_format()) +
-  labs(title = "Male and Female Posterior for Risk of Lung Cancer", subtitle = "Men are twice as likely as women to get Lung Cancer", fill = "Gender", x = "Posterior Prediction for Lung Cancer") +
-  theme(axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank())
+ggplot(new_lung_air, aes(x = as.factor(air_pollution), y = .epred, fill = .category)) +
+  geom_dots(aes(color = .category), show.legend = c(color = FALSE)) +
+  geom_line(aes(x = air_pollution, y = .epred, color = .category), show.legend = c(color = FALSE)) + 
+  labs(x = "Air Pollution Level", y = "Predicted Cancer Risk", title = "Distribution of Predicted Cancer Risk by Air Pollution Level", fill = "Cancer Risk", subtitle = "The predicted cancer risk increases as the air pollution level increases") +
+  theme_clean() + 
+  theme(
+    legend.position = c(0.8, 0.5),
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 8),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.grid.major.x = element_line(color = "grey80", linetype = "dotted"),
+    panel.grid.minor.x = element_line(color = "grey90", linetype = "dotted"))
 ```
 
-## Gender vs. Cancer Risk
+Comparing both posterior prediction graphs we can see that they are similiar in terms of trend and probability of risk of lung cancer, leading to an interesting revelation that...
+
+> Air pollution level is as bad as smoking for probability of getting lung cancer
 

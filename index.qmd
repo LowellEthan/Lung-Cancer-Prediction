@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "Lung Cancer Prediction by Various Factors"
 author: "Lowell Ethan Xavier"
 format: html
 execute: 
@@ -7,9 +7,80 @@ execute:
   message: FALSE
 ---
 
-*Modeling the relationships between Lung Cancer and other various factors such as air pollution, smoking, obesity, etc. to understand better treatment and prevention of it.*
+*Modeling the relationships between lung cancer and other various factors such as air pollution, smoking, obesity, etc. to understand better treatment and prevention of it.*
 
+```{r}
+#| label: setup
+#| message: FALSE
+library(tidyverse)
+library(tidybayes)
+library(brms)
+library(ggthemes)
+library(gtsummary)
+```
 
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+lung <- read_csv("data/lung-cancer.csv") |>
+  rename(
+    index = index,
+    patient_id = `Patient Id`,
+    age = Age,
+    gender = Gender,
+    air_pollution = `Air Pollution`,
+    alcohol = `Alcohol use`,
+    dust_allergy = `Dust Allergy`,
+    occupational_hazards = `OccuPational Hazards`,
+    genetic_risk = `Genetic Risk`,
+    chronic_lung_disease = `chronic Lung Disease`,
+    balanced_diet = `Balanced Diet`,
+    obesity = Obesity,
+    smoking = Smoking,
+    passive_smoker = `Passive Smoker`,
+    chest_pain = `Chest Pain`,
+    coughing_blood = `Coughing of Blood`,
+    fatigue = Fatigue,
+    weight_loss = `Weight Loss`,
+    shortness_of_breath = `Shortness of Breath`,
+    wheezing = Wheezing,
+    swallowing_difficulty = `Swallowing Difficulty`,
+    clubbing_nails = `Clubbing of Finger Nails`,
+    frequent_cold = `Frequent Cold`,
+    dry_cough = `Dry Cough`,
+    snoring = Snoring,
+    level = Level
+  ) |> mutate(gender = recode(gender, `1` = "Male", `2` = "Female"), level = recode(level, `Low` = 1, `Medium` = 2, `High` = 3))
+```
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+#| label: Gender Model
+#| cache: TRUE
+
+fit_sex <- brm(
+  formula = level ~ gender,
+  data = lung,
+  family = categorical(),
+  silent = 2,
+  refresh = 0,
+  seed = 9)
+```
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+#| label: Gender Model Plot 1
+
+fit_sex |> add_epred_draws(newdata = tibble(gender = c("Female", "Male"))) |> mutate(.category = recode(.category, `1` = "Low", `2` = "Medium", `3` = "High")) |>
+  select(gender, .category, .epred) |>
+  filter(.category != "Medium") |>
+  ggplot(aes(x = .epred, fill = gender)) +
+    geom_histogram(bins = 100) +
+    facet_grid(~ .category) +
+    scale_x_continuous(
+      breaks = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+      labels = scales::percent_format()) +
+  labs(title = "Male and Female Posterior for Risk of Lung Cancer", subtitle = "Men are twice as likely as women to get Lung Cancer", fill = "Gender", x = "Posterior Prediction for Lung Cancer") +
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
 
 ## Project Summary
 

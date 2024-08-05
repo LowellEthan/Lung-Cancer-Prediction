@@ -8,5 +8,6 @@ rsconnect
 *_files
 *_cache
 *_site
+.DS_Store
 
 /.quarto/

@@ -1,1 +1,1 @@
-Sitemap: https://7f5bbbbe-f2cf-439a-b882-db03f582806f.netlify.app/sitemap.xml
+Sitemap: https://LowellEthan.github.io/Lung-Cancer-Prediction/sitemap.xml

@@ -116,8 +116,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#air-pollution-smoking-vs.-cancer-risk" id="toc-air-pollution-smoking-vs.-cancer-risk" class="nav-link" data-scroll-target="#air-pollution-smoking-vs.-cancer-risk">Air Pollution + Smoking vs.&nbsp;Cancer Risk</a></li>
+  <li><a href="#gender-vs.-cancer-risk" id="toc-gender-vs.-cancer-risk" class="nav-link" data-scroll-target="#gender-vs.-cancer-risk">Gender vs.&nbsp;Cancer Risk</a></li>
+  <li><a href="#gender-vs.-cancer-risk-1" id="toc-gender-vs.-cancer-risk-1" class="nav-link" data-scroll-target="#gender-vs.-cancer-risk-1">Gender vs.&nbsp;Cancer Risk</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -147,22 +156,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Lung Cancer is the 2nd most common cancer affecting the United States in 2024, understanding the causes and predicting the probability of it can allow for the demystification and prevention of the disease. To do so, modelling the data is a great way to visualize the outcomes.</p>
+</section>
+<section id="air-pollution-smoking-vs.-cancer-risk" class="level2">
+<h2 class="anchored" data-anchor-id="air-pollution-smoking-vs.-cancer-risk">Air Pollution + Smoking vs.&nbsp;Cancer Risk</h2>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 1000 Columns: 26
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (2): Patient Id, Level
-dbl (24): index, Age, Gender, Air Pollution, Alcohol use, Dust Allergy, Occu...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Trying to compile a simple C file</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Running /Library/Frameworks/R.framework/Resources/bin/R CMD SHLIB foo.c
 using C compiler: ‘Apple clang version 15.0.0 (clang-1500.3.9.4)’
@@ -177,40 +177,6 @@ In file included from /Library/Frameworks/R.framework/Versions/4.4-arm64/Resourc
          ^~~~~~~
 1 error generated.
 make: *** [foo.o] Error 1</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                      Estimate Est.Error        Q2.5      Q97.5
-muLow_Intercept      0.3074442 0.1272860  0.04967160  0.5641404
-muMedium_Intercept   0.1746985 0.1279185 -0.07478278  0.4221250
-muLow_genderMale    -0.8347218 0.1617886 -1.14624345 -0.5151588
-muMedium_genderMale -0.4222379 0.1595136 -0.73520927 -0.1040867</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Using 10 posterior draws for ppc type 'dens_overlay' by default.</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="models_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Adding missing grouping variables: `.row`</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="models_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Trying to compile a simple C file</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Running /Library/Frameworks/R.framework/Resources/bin/R CMD SHLIB foo.c
@@ -232,14 +198,55 @@ make: *** [foo.o] Error 1</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="models_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="models_files/figure-html/Air Pollution + Smoking Model Plot 1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Lung Cancer is the 2nd most common cancer affecting the United States in 2024. Using data from from a study done by the journal Nature Medicine on over 462,000 people in China who lived in areas with varying levels of air pollution, we seek to understand the relationship between risk of lung cancer and air pollution. We modeled people living in various atmospheric conditions, a categorical variable, as a categorical function of Lung Cancer Risk. Individuals with worse conditions were more likely to be prone to Lung Cancer.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="models_files/figure-html/Air Pollution + Smoking Model Plot 2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="gender-vs.-cancer-risk" class="level2">
+<h2 class="anchored" data-anchor-id="gender-vs.-cancer-risk">Gender vs.&nbsp;Cancer Risk</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Running /Library/Frameworks/R.framework/Resources/bin/R CMD SHLIB foo.c
+using C compiler: ‘Apple clang version 15.0.0 (clang-1500.3.9.4)’
+using SDK: ‘MacOSX14.4.sdk’
+clang -arch arm64 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG   -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/Rcpp/include/"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include/"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include/unsupported"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/BH/include" -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/StanHeaders/include/src/"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/StanHeaders/include/"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppParallel/include/"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/rstan/include" -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DUSE_STANC3 -DSTRICT_R_HEADERS  -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION  -D_HAS_AUTO_PTR_ETC=0  -include '/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/StanHeaders/include/stan/math/prim/fun/Eigen.hpp'  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1   -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c foo.c -o foo.o
+In file included from &lt;built-in&gt;:1:
+In file included from /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/StanHeaders/include/stan/math/prim/fun/Eigen.hpp:22:
+In file included from /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include/Eigen/Dense:1:
+In file included from /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include/Eigen/Core:19:
+/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include/Eigen/src/Core/util/Macros.h:679:10: fatal error: 'cmath' file not found
+#include &lt;cmath&gt;
+         ^~~~~~~
+1 error generated.
+make: *** [foo.o] Error 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="models_files/figure-html/Gender Model Plot 1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="gender-vs.-cancer-risk-1" class="level2">
+<h2 class="anchored" data-anchor-id="gender-vs.-cancer-risk-1">Gender vs.&nbsp;Cancer Risk</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -334,7 +341,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/LowellEthan\.github\.io\/Lung-Cancer-Prediction\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

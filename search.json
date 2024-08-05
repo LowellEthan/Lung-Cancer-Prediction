@@ -2,7 +2,7 @@
   {
     "objectID": "source.html",
     "href": "source.html",
-    "title": "Sources",
+    "title": "Source and Relevant Information",
     "section": "",
     "text": "I used the Lung Cancer Prediction data-set from Kaggle to complete this model project. This data-set contains information on patients with lung cancer, including their age, gender, air pollution exposure, alcohol use, dust allergy, occupational hazards, genetic risk, chronic lung disease, balanced diet, obesity, smoking, passive smoker, chest pain, coughing of blood, fatigue, weight loss, shortness of breath, wheezing, swallowing difficulty, clubbing of finger nails and snoring.\nThe data-set contained clean data, as all individuals were actual patients part of a study publish in the journal Natural Medicine about Health Effects of Air Pollution in China. Read more about the article to find out about interesting details of how the study was done, and other conclusions that came out of it.\nTo learn more about the code, and technical aspect of the project, check out the Github Repository."
   },

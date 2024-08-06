@@ -1,38 +1,31 @@
 [
   {
-    "objectID": "source.html",
-    "href": "source.html",
-    "title": "Source and Relevant Information",
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Visual Analysis",
     "section": "",
-    "text": "I used the Lung Cancer Prediction data-set from Kaggle to complete this model project. This data-set contains information on patients with lung cancer, including their age, gender, air pollution exposure, alcohol use, dust allergy, occupational hazards, genetic risk, chronic lung disease, balanced diet, obesity, smoking, passive smoker, chest pain, coughing of blood, fatigue, weight loss, shortness of breath, wheezing, swallowing difficulty, clubbing of finger nails and snoring.\nThe data-set contained clean data, as all individuals were actual patients part of a study publish in the journal Natural Medicine about Health Effects of Air Pollution in China. Read more about the article to find out about interesting details of how the study was done, and other conclusions that came out of it."
+    "text": "How does the risk of lung cancer vary across different levels of smoking and air pollution exposure?"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Lung Cancer Prediction by Various Factors",
-    "section": "",
-    "text": "Modeling the relationships between lung cancer and other various factors such as air pollution, smoking, obesity, etc. to understand better treatment and prevention of it."
+    "objectID": "analysis.html#bar-plot-of-lung-cancer-levels-by-air-pollution-and-smoking",
+    "href": "analysis.html#bar-plot-of-lung-cancer-levels-by-air-pollution-and-smoking",
+    "title": "Visual Analysis",
+    "section": "Bar Plot of Lung Cancer Levels by Air Pollution and Smoking",
+    "text": "Bar Plot of Lung Cancer Levels by Air Pollution and Smoking\n\n\n\n\n\n\n\n\n\nThis stacked bar plot illustrates the distribution of lung cancer risk levels across different air pollution categories, with further segmentation by smoking intensity. It provides a clear visual representation of how the combination of high air pollution and elevated smoking intensity correlates with increased lung cancer risk. The plot reveals that lung cancer risk is most pronounced in scenarios where both air pollution and smoking levels are high, highlighting the compounded effect of these factors on lung cancer incidence."
   },
   {
-    "objectID": "index.html#project-summary",
-    "href": "index.html#project-summary",
-    "title": "Lung Cancer Prediction by Various Factors",
-    "section": "Project Summary",
-    "text": "Project Summary\nLung Cancer is the 2nd most common cancer affecting the United States in 2024. Using data from from a study done by the journal Nature Medicine on over 462,000 people in China who lived in areas with varying levels of air pollution, we seek to understand the relationship between risk of lung cancer and air pollution. We modeled people living in various atmospheric conditions, a categorical variable, as a categorical function of Lung Cancer Risk. Individuals with worse conditions were more likely to be prone to Lung Cancer."
+    "objectID": "analysis.html#violin-plot-of-age-distribution-by-gender-for-lung-cancer-risk",
+    "href": "analysis.html#violin-plot-of-age-distribution-by-gender-for-lung-cancer-risk",
+    "title": "Visual Analysis",
+    "section": "Violin Plot of Age Distribution by Gender for Lung Cancer Risk",
+    "text": "Violin Plot of Age Distribution by Gender for Lung Cancer Risk\n\n\n\n\n\n\n\n\n\nThis violin plot illustrates the distribution of age across different gender categories, segmented by lung cancer risk levels. The plot reveals how age varies within each gender and how this variation is further divided by the level of lung cancer risk. The width of each violin plot indicates the density of ages, providing a clear view of age distribution patterns. It shows whether certain genders tend to have a wider or narrower range of ages for different lung cancer risk levels. This visualization helps in understanding the demographic characteristics associated with each risk level."
   },
   {
-    "objectID": "models.html",
-    "href": "models.html",
-    "title": "Lung Cancer Prediction by Various Factors",
-    "section": "",
-    "text": "Lung Cancer is the 2nd most common cancer affecting the United States in 2024, understanding the causes and predicting the probability of it can allow for the demystification and prevention of the disease. To do so, modelling the data is a great way to visualize the outcomes."
-  },
-  {
-    "objectID": "models.html#air-pollution-smoking-vs.-cancer-risk",
-    "href": "models.html#air-pollution-smoking-vs.-cancer-risk",
-    "title": "Lung Cancer Prediction by Various Factors",
-    "section": "Air Pollution + Smoking vs. Cancer Risk",
-    "text": "Air Pollution + Smoking vs. Cancer Risk\nIt is a common know fact that smoking has a direct correlation to lung cancer, and one of the greatest determinators of whether or not one can get lung cancer.\n\nSmoking\nTo find the relationship between lung cancer and smoking to see just by how much it increases risk of getting Lung Cancer, a categorical model can be made:\n\nFormula \\[\\begin{equation}\n\\text{level} = \\alpha + \\beta_1 (\\text{smoking}) + \\epsilon\n\\end{equation}\\]\nTable\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\n1\n\n\n\n\nmu2_(Intercept)\n0.56\n0.29, 0.85\n\n\nmu3_(Intercept)\n-2.5\n-2.9, -2.1\n\n\nmu2_smoking\n-0.17\n-0.26, -0.09\n\n\nmu3_smoking\n0.59\n0.51, 0.67\n\n\n\n1\nCI = Credible Interval\n\n\n\n\n\n\n\n\n\nPlot of Posterior Prediction (Air Pollution)\n\n\n\n\n\n\n\n\n\n\nAs seen in the graph, the risk of lung cancer increases as the level of smoking increases, which is a well know fact, but something interesting happens when the prediction of lung cancer is seen with the level of air pollution.\n\n\nAir Pollution\nTo find the relationship between lung cancer and air pollution another categorical model can be made lke thus:\n\nFormula \\[\\begin{equation}\n\\text{level} = \\alpha + \\beta_1 (\\text{air\\_pollution}) + \\epsilon\n\\end{equation}\\]\nTable\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\n1\n\n\n\n\nmu2_(Intercept)\n-0.29\n-0.60, 0.05\n\n\nmu3_(Intercept)\n-4.6\n-5.3, -4.0\n\n\nmu2_air_pollution\n0.14\n0.03, 0.24\n\n\nmu3_air_pollution\n1.1\n1.0, 1.3\n\n\n\n1\nCI = Credible Interval\n\n\n\n\n\n\n\n\n\nPlot of Posterior Prediction (Smoking)\n\n\n\n\n\n\n\n\n\n\nComparing both posterior prediction graphs we can see that they are similiar in terms of trend and probability of risk of lung cancer, leading to an interesting revelation that…\n\nAir pollution level is as bad as smoking for probability of getting lung cancer"
+    "objectID": "analysis.html#heatmap-of-correlations",
+    "href": "analysis.html#heatmap-of-correlations",
+    "title": "Visual Analysis",
+    "section": "Heatmap of Correlations",
+    "text": "Heatmap of Correlations\n\n\n\n\n\n\n\n\n\nThis heatmap illustrates the correlations between various health factors and lung cancer risk, using a dataset of 1,000 patients. The color gradient ranges from blue, indicating strong negative correlations, to red, showing strong positive correlations, with white representing no correlation. Variables such as age, air pollution, smoking, genetic risk, and other health indicators are compared along the x and y axes. The x-axis labels are tilted at 45 degrees for better readability. This visualization helps identify relationships between different factors, highlighting how changes in one variable might be associated with changes in another, and provides insight into the complex interplay of factors influencing lung cancer risk."
   },
   {
     "objectID": "about.html",
@@ -47,5 +40,75 @@
     "title": "About Me",
     "section": "The Project",
     "text": "The Project\nThis project is to visualize, and better understand the Air Pollution in Correlation to Lung Cancer.\nThis project was created as a part of Kane’s Data Science Bootcamp."
+  },
+  {
+    "objectID": "models.html",
+    "href": "models.html",
+    "title": "Lung Cancer Prediction by Smoking and exposure to air pollution",
+    "section": "",
+    "text": "How does the risk of lung cancer vary across different levels of smoking and air pollution exposure?"
+  },
+  {
+    "objectID": "models.html#context",
+    "href": "models.html#context",
+    "title": "Lung Cancer Prediction by Smoking and exposure to air pollution",
+    "section": "Context",
+    "text": "Context\nLung cancer is the second most prevalent cancer in the United States in 2024, with smoking being a major risk factor directly linked to its development. Understanding how different levels of smoking and air pollution exposure affect the likelihood of lung cancer is essential for both unraveling the complexities of the disease and enhancing preventive measures. By utilizing data modeling techniques, we can visualize and analyze how variations in smoking habits and air pollution contribute to lung cancer risk. This approach helps reveal underlying patterns and relationships, ultimately supporting the development of more effective prevention strategies and informing public health initiatives aimed at reducing lung cancer incidence."
+  },
+  {
+    "objectID": "models.html#smoking-vs.-cancer-risk",
+    "href": "models.html#smoking-vs.-cancer-risk",
+    "title": "Lung Cancer Prediction by Smoking and exposure to air pollution",
+    "section": "Smoking vs. Cancer Risk",
+    "text": "Smoking vs. Cancer Risk\nTo determine the extent to which smoking increases the risk of lung cancer, a categorical model can be developed. This model will help quantify the relationship between smoking and the likelihood of developing lung cancer, providing a clearer understanding of how smoking contributes to the cancer’s risk.\n\nFormula\n\n\\(\\text{risk} = \\beta_0 + \\beta_1 (\\text{smoking})_i + \\epsilon_i\\)\n\nTable\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\n1\n\n\n\n\nmu2_(Intercept)\n0.56\n0.29, 0.85\n\n\nmu3_(Intercept)\n-2.5\n-2.9, -2.1\n\n\nmu2_smoking\n-0.17\n-0.26, -0.09\n\n\nmu3_smoking\n0.59\n0.51, 0.67\n\n\n\n1\nCI = Credible Interval\n\n\n\n\n\n\n\n\n\nPlot of Posterior Prediction (Air Pollution)\n\n\n\n\n\n\n\n\n\n\nThe graph clearly shows that the risk of lung cancer rises with higher levels of smoking, a fact well-documented in medical research. However, a more intriguing pattern emerges when we examine how the risk of lung cancer is influenced by different levels of air pollution. This additional layer of analysis reveals complex interactions between smoking and air pollution, offering new insights into how these factors together impact lung cancer risk."
+  },
+  {
+    "objectID": "models.html#air-pollution-vs.-cancer-risk",
+    "href": "models.html#air-pollution-vs.-cancer-risk",
+    "title": "Lung Cancer Prediction by Smoking and exposure to air pollution",
+    "section": "Air Pollution vs. Cancer Risk",
+    "text": "Air Pollution vs. Cancer Risk\nTo examine the relationship between lung cancer and air pollution, we can construct a categorical model. This model will help us assess how different levels of air pollution influence the risk of developing lung cancer, both independently and in conjunction with other factors like smoking.\n\nFormula\n\n\\(\\text{risk} = \\beta_0 + \\beta_1 (\\text{air\\_pollution})_i + \\epsilon_i\\)\n\nTable\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\n1\n\n\n\n\nmu2_(Intercept)\n-0.29\n-0.60, 0.05\n\n\nmu3_(Intercept)\n-4.6\n-5.3, -4.0\n\n\nmu2_air_pollution\n0.14\n0.03, 0.24\n\n\nmu3_air_pollution\n1.1\n1.0, 1.3\n\n\n\n1\nCI = Credible Interval\n\n\n\n\n\n\n\n\n\nPlot of Posterior Prediction (Smoking)\n\n\n\n\n\n\n\n\n\n\nThe graph clearly indicates that the risk of lung cancer increases with higher levels of air pollution, which may initially seem surprising. Both smoking and air pollution exhibit similar trends in predicting lung cancer risk. To gain a comprehensive understanding, it is crucial to compare their relative impacts and determine how each contributes to the overall risk of developing the disease."
+  },
+  {
+    "objectID": "models.html#air-pollution-smoking-vs.-cancer-risk",
+    "href": "models.html#air-pollution-smoking-vs.-cancer-risk",
+    "title": "Lung Cancer Prediction by Smoking and exposure to air pollution",
+    "section": "Air Pollution + Smoking vs. Cancer Risk",
+    "text": "Air Pollution + Smoking vs. Cancer Risk\nTo determine which factor—smoking or air pollution—has a greater impact on the risk of lung cancer, a Gaussian model can be constructed. This model will help analyze and compare the influence of each factor, providing a clearer understanding of their relative contributions to the disease.\n\nFormula\n\n\\(\\text{risk} = \\beta_0 + \\beta_1 (\\text{air\\_pollution}) + \\beta_2 (\\text{smoking}) + \\beta_3 (\\text{age})_i + + \\beta_4 (\\text{male}) + \\epsilon_i\\)\n\nTable\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\n1\n\n\n\n\nsmoking\n0.09\n0.07, 0.11\n\n\nair_pollution\n0.20\n0.18, 0.22\n\n\ngender\n\n\n\n\n\n\n    genderMale\n-0.03\n-0.11, 0.05\n\n\nage\n0.00\n0.00, 0.00\n\n\n\n1\nCI = Credible Interval\n\n\n\n\n\n\n\n\n\nHeatmap of Posterior Prediction (Smoking + Pollution)\n\n\n\n\n\n\n\n\n\n\nAir pollution has a greater impact on lung cancer risk compared to smoking. The impact of air pollution is significantly higher, indicating that reducing air pollution is more crucial for lowering lung cancer risk than reducing smoking. Addressing air pollution should be a priority in lung cancer prevention strategies."
+  },
+  {
+    "objectID": "models.html#analysis",
+    "href": "models.html#analysis",
+    "title": "Lung Cancer Prediction by Smoking and exposure to air pollution",
+    "section": "Analysis",
+    "text": "Analysis\nTo determine which factor, smoking or air pollution, has a greater impact on lung cancer risk and quantify this difference, we need to compare their regression coefficients and their credible intervals.\n\nRegression Coefficients and Credible Intervals:\n\n\nSmoking: \\(\\beta_2 = 0.09\\) (95% CI: 0.07, 0.11)\nAir Pollution: \\(\\beta_1 = 0.20\\) (95% CI: 0.18, 0.22)\n\n\nComparison: From the coefficients, it is clear that air pollution has a larger impact on lung cancer risk compared to smoking.\nDifference in Impact: The difference in the impact of air pollution and smoking on lung cancer risk is given by: \\(\\beta_1 - \\beta_2 = 0.20 - 0.09 = 0.11\\)\nCredible Interval for the Difference: To compute the credible interval for this difference, we can approximate it using the provided credible intervals for the individual coefficients. The variance of the difference of two independent variables is the sum of their variances. However, since we only have the credible intervals, we will assume independence and add the ranges conservatively.\n\n\nLower Bound Difference: \\(0.18 - 0.11 = 0.07\\)\nUpper Bound Difference: \\(0.22 - 0.07 = 0.15\\)\n\nThus, the credible interval for the difference between the impact of air pollution and smoking is approximately (0.07, 0.15)."
+  },
+  {
+    "objectID": "models.html#conclusion",
+    "href": "models.html#conclusion",
+    "title": "Lung Cancer Prediction by Smoking and exposure to air pollution",
+    "section": "Conclusion",
+    "text": "Conclusion\nAir pollution has a greater impact on lung cancer risk than smoking, with an estimated difference in their effects of 0.11. The 95% credible interval for this difference is approximately (0.07, 0.15). This means air pollution is worse than smoking in terms of increasing lung cancer risk, with a difference ranging between 0.07 and 0.15 in their respective impacts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Lung Cancer Prediction by Smoking and exposure to air pollution",
+    "section": "",
+    "text": "How does the risk of lung cancer vary across different levels of smoking and air pollution exposure?"
+  },
+  {
+    "objectID": "index.html#project-summary",
+    "href": "index.html#project-summary",
+    "title": "Lung Cancer Prediction by Smoking and exposure to air pollution",
+    "section": "Project Summary",
+    "text": "Project Summary\nLung cancer is the second most common cancer in the United States as of 2024. Drawing from a study conducted by Nature Medicine on over 462,000 individuals in China, who lived in areas with varying levels of air pollution, we aim to elucidate the relationship between lung cancer risk and air pollution. In our analysis, atmospheric conditions were treated as a categorical variable to assess their impact on lung cancer risk. Our findings indicate that individuals residing in more polluted environments are at a higher risk for lung cancer. Air pollution has a significantly greater effect on lung cancer risk compared to smoking, with an estimated difference in their impacts of 0.11 and a 95% credible interval ranging from 0.07 to 0.15."
+  },
+  {
+    "objectID": "source.html",
+    "href": "source.html",
+    "title": "Source and Relevant Information",
+    "section": "",
+    "text": "I used the Lung Cancer Prediction data-set from Kaggle to complete this model project. This data-set contains information on patients with lung cancer, including their age, gender, air pollution exposure, alcohol use, dust allergy, occupational hazards, genetic risk, chronic lung disease, balanced diet, obesity, smoking, passive smoker, chest pain, coughing of blood, fatigue, weight loss, shortness of breath, wheezing, swallowing difficulty, clubbing of finger nails and snoring.\nThe data-set contained clean data, as all individuals were actual patients part of a study publish in the journal Natural Medicine about Health Effects of Air Pollution in China. Read more about the article to find out about interesting details of how the study was done, and other conclusions that came out of it."
   }
 ]

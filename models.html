@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Lowell Ethan Xavier">
 
-<title>Lung Cancer Prediction by Various Factors – Lung Cancer Prediction</title>
+<title>Lung Cancer Prediction by Smoking and exposure to air pollution – Lung Cancer Prediction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -123,6 +122,10 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./analysis.html"> 
+<span class="menu-text">Visuals</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link active" href="./models.html" aria-current="page"> 
 <span class="menu-text">Models</span></a>
   </li>  
@@ -150,11 +153,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#air-pollution-smoking-vs.-cancer-risk" id="toc-air-pollution-smoking-vs.-cancer-risk" class="nav-link active" data-scroll-target="#air-pollution-smoking-vs.-cancer-risk">Air Pollution + Smoking vs.&nbsp;Cancer Risk</a>
-  <ul class="collapse">
-  <li><a href="#smoking" id="toc-smoking" class="nav-link" data-scroll-target="#smoking">Smoking</a></li>
-  <li><a href="#air-pollution" id="toc-air-pollution" class="nav-link" data-scroll-target="#air-pollution">Air Pollution</a></li>
-  </ul></li>
+  <li><a href="#context" id="toc-context" class="nav-link active" data-scroll-target="#context">Context</a></li>
+  <li><a href="#smoking-vs.-cancer-risk" id="toc-smoking-vs.-cancer-risk" class="nav-link" data-scroll-target="#smoking-vs.-cancer-risk">Smoking vs.&nbsp;Cancer Risk</a></li>
+  <li><a href="#air-pollution-vs.-cancer-risk" id="toc-air-pollution-vs.-cancer-risk" class="nav-link" data-scroll-target="#air-pollution-vs.-cancer-risk">Air Pollution vs.&nbsp;Cancer Risk</a></li>
+  <li><a href="#air-pollution-smoking-vs.-cancer-risk" id="toc-air-pollution-smoking-vs.-cancer-risk" class="nav-link" data-scroll-target="#air-pollution-smoking-vs.-cancer-risk">Air Pollution + Smoking vs.&nbsp;Cancer Risk</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -163,19 +167,13 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lung Cancer Prediction by Various Factors</h1>
+<h1 class="title">Lung Cancer Prediction by Smoking and exposure to air pollution</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Lowell Ethan Xavier </p>
-          </div>
-  </div>
     
   
     
@@ -186,38 +184,40 @@ window.Quarto = {
 </header>
 
 
-<p>Lung Cancer is the 2nd most common cancer affecting the United States in 2024, understanding the causes and predicting the probability of it can allow for the demystification and prevention of the disease. To do so, modelling the data is a great way to visualize the outcomes.</p>
-<section id="air-pollution-smoking-vs.-cancer-risk" class="level2">
-<h2 class="anchored" data-anchor-id="air-pollution-smoking-vs.-cancer-risk">Air Pollution + Smoking vs.&nbsp;Cancer Risk</h2>
-<p>It is a common know fact that smoking has a direct correlation to lung cancer, and one of the greatest determinators of whether or not one can get lung cancer.</p>
-<section id="smoking" class="level3">
-<h3 class="anchored" data-anchor-id="smoking">Smoking</h3>
-<p>To find the relationship between lung cancer and smoking to see just by how much it increases risk of getting Lung Cancer, a categorical model can be made:</p>
+<p><em>How does the risk of lung cancer vary across different levels of smoking and air pollution exposure?</em></p>
+<section id="context" class="level2">
+<h2 class="anchored" data-anchor-id="context">Context</h2>
+<p>Lung cancer is the second most prevalent cancer in the United States in 2024, with smoking being a major risk factor directly linked to its development. Understanding how different levels of smoking and air pollution exposure affect the likelihood of lung cancer is essential for both unraveling the complexities of the disease and enhancing preventive measures. By utilizing data modeling techniques, we can visualize and analyze how variations in smoking habits and air pollution contribute to lung cancer risk. This approach helps reveal underlying patterns and relationships, ultimately supporting the development of more effective prevention strategies and informing public health initiatives aimed at reducing lung cancer incidence.</p>
+</section>
+<section id="smoking-vs.-cancer-risk" class="level2">
+<h2 class="anchored" data-anchor-id="smoking-vs.-cancer-risk">Smoking vs.&nbsp;Cancer Risk</h2>
+<p>To determine the extent to which smoking increases the risk of lung cancer, a categorical model can be developed. This model will help quantify the relationship between smoking and the likelihood of developing lung cancer, providing a clearer understanding of how smoking contributes to the cancer’s risk.</p>
 <ol type="1">
-<li><p>Formula <span class="math display">\[\begin{equation}
-\text{level} = \alpha + \beta_1 (\text{smoking}) + \epsilon
-\end{equation}\]</span></p></li>
-<li><p>Table</p></li>
+<li>Formula</li>
+</ol>
+<p><span class="math inline">\(\text{risk} = \beta_0 + \beta_1 (\text{smoking})_i + \epsilon_i\)</span></p>
+<ol start="2" type="1">
+<li>Table</li>
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<div id="dhsyatmdyu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dhsyatmdyu table {
+<div id="mqihwnbiem" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mqihwnbiem table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dhsyatmdyu thead, #dhsyatmdyu tbody, #dhsyatmdyu tfoot, #dhsyatmdyu tr, #dhsyatmdyu td, #dhsyatmdyu th {
+#mqihwnbiem thead, #mqihwnbiem tbody, #mqihwnbiem tfoot, #mqihwnbiem tr, #mqihwnbiem td, #mqihwnbiem th {
   border-style: none;
 }
 
-#dhsyatmdyu p {
+#mqihwnbiem p {
   margin: 0;
   padding: 0;
 }
 
-#dhsyatmdyu .gt_table {
+#mqihwnbiem .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -243,12 +243,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_caption {
+#mqihwnbiem .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dhsyatmdyu .gt_title {
+#mqihwnbiem .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -260,7 +260,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#dhsyatmdyu .gt_subtitle {
+#mqihwnbiem .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -272,7 +272,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#dhsyatmdyu .gt_heading {
+#mqihwnbiem .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -284,13 +284,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_bottom_border {
+#mqihwnbiem .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_col_headings {
+#mqihwnbiem .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -305,7 +305,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_col_heading {
+#mqihwnbiem .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -325,7 +325,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#dhsyatmdyu .gt_column_spanner_outer {
+#mqihwnbiem .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -337,15 +337,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#dhsyatmdyu .gt_column_spanner_outer:first-child {
+#mqihwnbiem .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dhsyatmdyu .gt_column_spanner_outer:last-child {
+#mqihwnbiem .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dhsyatmdyu .gt_column_spanner {
+#mqihwnbiem .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -357,11 +357,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#dhsyatmdyu .gt_spanner_row {
+#mqihwnbiem .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dhsyatmdyu .gt_group_heading {
+#mqihwnbiem .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -387,7 +387,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#dhsyatmdyu .gt_empty_group_heading {
+#mqihwnbiem .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -402,15 +402,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#dhsyatmdyu .gt_from_md > :first-child {
+#mqihwnbiem .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dhsyatmdyu .gt_from_md > :last-child {
+#mqihwnbiem .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dhsyatmdyu .gt_row {
+#mqihwnbiem .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -429,7 +429,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#dhsyatmdyu .gt_stub {
+#mqihwnbiem .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -442,7 +442,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#dhsyatmdyu .gt_stub_row_group {
+#mqihwnbiem .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -456,15 +456,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#dhsyatmdyu .gt_row_group_first td {
+#mqihwnbiem .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dhsyatmdyu .gt_row_group_first th {
+#mqihwnbiem .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dhsyatmdyu .gt_summary_row {
+#mqihwnbiem .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -474,16 +474,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#dhsyatmdyu .gt_first_summary_row {
+#mqihwnbiem .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_first_summary_row.thick {
+#mqihwnbiem .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dhsyatmdyu .gt_last_summary_row {
+#mqihwnbiem .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -493,7 +493,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_grand_summary_row {
+#mqihwnbiem .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -503,7 +503,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#dhsyatmdyu .gt_first_grand_summary_row {
+#mqihwnbiem .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -513,7 +513,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_last_grand_summary_row_top {
+#mqihwnbiem .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -523,11 +523,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_striped {
+#mqihwnbiem .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dhsyatmdyu .gt_table_body {
+#mqihwnbiem .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -536,7 +536,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_footnotes {
+#mqihwnbiem .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -550,7 +550,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_footnote {
+#mqihwnbiem .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -559,7 +559,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#dhsyatmdyu .gt_sourcenotes {
+#mqihwnbiem .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -573,7 +573,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#dhsyatmdyu .gt_sourcenote {
+#mqihwnbiem .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -581,72 +581,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#dhsyatmdyu .gt_left {
+#mqihwnbiem .gt_left {
   text-align: left;
 }
 
-#dhsyatmdyu .gt_center {
+#mqihwnbiem .gt_center {
   text-align: center;
 }
 
-#dhsyatmdyu .gt_right {
+#mqihwnbiem .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dhsyatmdyu .gt_font_normal {
+#mqihwnbiem .gt_font_normal {
   font-weight: normal;
 }
 
-#dhsyatmdyu .gt_font_bold {
+#mqihwnbiem .gt_font_bold {
   font-weight: bold;
 }
 
-#dhsyatmdyu .gt_font_italic {
+#mqihwnbiem .gt_font_italic {
   font-style: italic;
 }
 
-#dhsyatmdyu .gt_super {
+#mqihwnbiem .gt_super {
   font-size: 65%;
 }
 
-#dhsyatmdyu .gt_footnote_marks {
+#mqihwnbiem .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dhsyatmdyu .gt_asterisk {
+#mqihwnbiem .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dhsyatmdyu .gt_indent_1 {
+#mqihwnbiem .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dhsyatmdyu .gt_indent_2 {
+#mqihwnbiem .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dhsyatmdyu .gt_indent_3 {
+#mqihwnbiem .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dhsyatmdyu .gt_indent_4 {
+#mqihwnbiem .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dhsyatmdyu .gt_indent_5 {
+#mqihwnbiem .gt_indent_5 {
   text-indent: 25px;
 }
 
-#dhsyatmdyu .katex-display {
+#mqihwnbiem .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#dhsyatmdyu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mqihwnbiem div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -713,36 +713,37 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>As seen in the graph, the risk of lung cancer increases as the level of smoking increases, which is a well know fact, but something interesting happens when the prediction of lung cancer is seen with the level of air pollution.</p>
+<p>The graph clearly shows that the risk of lung cancer rises with higher levels of smoking, a fact well-documented in medical research. However, a more intriguing pattern emerges when we examine how the risk of lung cancer is influenced by different levels of air pollution. This additional layer of analysis reveals complex interactions between smoking and air pollution, offering new insights into how these factors together impact lung cancer risk.</p>
 </section>
-<section id="air-pollution" class="level3">
-<h3 class="anchored" data-anchor-id="air-pollution">Air Pollution</h3>
-<p>To find the relationship between lung cancer and air pollution another categorical model can be made lke thus:</p>
+<section id="air-pollution-vs.-cancer-risk" class="level2">
+<h2 class="anchored" data-anchor-id="air-pollution-vs.-cancer-risk">Air Pollution vs.&nbsp;Cancer Risk</h2>
+<p>To examine the relationship between lung cancer and air pollution, we can construct a categorical model. This model will help us assess how different levels of air pollution influence the risk of developing lung cancer, both independently and in conjunction with other factors like smoking.</p>
 <ol type="1">
-<li><p>Formula <span class="math display">\[\begin{equation}
-\text{level} = \alpha + \beta_1 (\text{air\_pollution}) + \epsilon
-\end{equation}\]</span></p></li>
-<li><p>Table</p></li>
+<li>Formula</li>
+</ol>
+<p><span class="math inline">\(\text{risk} = \beta_0 + \beta_1 (\text{air\_pollution})_i + \epsilon_i\)</span></p>
+<ol start="2" type="1">
+<li>Table</li>
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ycdlajybws" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ycdlajybws table {
+<div id="zvdedvkukh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zvdedvkukh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ycdlajybws thead, #ycdlajybws tbody, #ycdlajybws tfoot, #ycdlajybws tr, #ycdlajybws td, #ycdlajybws th {
+#zvdedvkukh thead, #zvdedvkukh tbody, #zvdedvkukh tfoot, #zvdedvkukh tr, #zvdedvkukh td, #zvdedvkukh th {
   border-style: none;
 }
 
-#ycdlajybws p {
+#zvdedvkukh p {
   margin: 0;
   padding: 0;
 }
 
-#ycdlajybws .gt_table {
+#zvdedvkukh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -768,12 +769,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_caption {
+#zvdedvkukh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ycdlajybws .gt_title {
+#zvdedvkukh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -785,7 +786,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#ycdlajybws .gt_subtitle {
+#zvdedvkukh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -797,7 +798,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#ycdlajybws .gt_heading {
+#zvdedvkukh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -809,13 +810,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_bottom_border {
+#zvdedvkukh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_col_headings {
+#zvdedvkukh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -830,7 +831,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_col_heading {
+#zvdedvkukh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -850,7 +851,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#ycdlajybws .gt_column_spanner_outer {
+#zvdedvkukh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -862,15 +863,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#ycdlajybws .gt_column_spanner_outer:first-child {
+#zvdedvkukh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ycdlajybws .gt_column_spanner_outer:last-child {
+#zvdedvkukh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ycdlajybws .gt_column_spanner {
+#zvdedvkukh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -882,11 +883,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#ycdlajybws .gt_spanner_row {
+#zvdedvkukh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ycdlajybws .gt_group_heading {
+#zvdedvkukh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -912,7 +913,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#ycdlajybws .gt_empty_group_heading {
+#zvdedvkukh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -927,15 +928,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#ycdlajybws .gt_from_md > :first-child {
+#zvdedvkukh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ycdlajybws .gt_from_md > :last-child {
+#zvdedvkukh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ycdlajybws .gt_row {
+#zvdedvkukh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -954,7 +955,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#ycdlajybws .gt_stub {
+#zvdedvkukh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -967,7 +968,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#ycdlajybws .gt_stub_row_group {
+#zvdedvkukh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -981,15 +982,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#ycdlajybws .gt_row_group_first td {
+#zvdedvkukh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ycdlajybws .gt_row_group_first th {
+#zvdedvkukh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ycdlajybws .gt_summary_row {
+#zvdedvkukh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -999,16 +1000,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#ycdlajybws .gt_first_summary_row {
+#zvdedvkukh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_first_summary_row.thick {
+#zvdedvkukh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ycdlajybws .gt_last_summary_row {
+#zvdedvkukh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1018,7 +1019,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_grand_summary_row {
+#zvdedvkukh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1028,7 +1029,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#ycdlajybws .gt_first_grand_summary_row {
+#zvdedvkukh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1038,7 +1039,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_last_grand_summary_row_top {
+#zvdedvkukh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1048,11 +1049,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_striped {
+#zvdedvkukh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ycdlajybws .gt_table_body {
+#zvdedvkukh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1061,7 +1062,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_footnotes {
+#zvdedvkukh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1075,7 +1076,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_footnote {
+#zvdedvkukh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1084,7 +1085,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#ycdlajybws .gt_sourcenotes {
+#zvdedvkukh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1098,7 +1099,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#ycdlajybws .gt_sourcenote {
+#zvdedvkukh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1106,72 +1107,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#ycdlajybws .gt_left {
+#zvdedvkukh .gt_left {
   text-align: left;
 }
 
-#ycdlajybws .gt_center {
+#zvdedvkukh .gt_center {
   text-align: center;
 }
 
-#ycdlajybws .gt_right {
+#zvdedvkukh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ycdlajybws .gt_font_normal {
+#zvdedvkukh .gt_font_normal {
   font-weight: normal;
 }
 
-#ycdlajybws .gt_font_bold {
+#zvdedvkukh .gt_font_bold {
   font-weight: bold;
 }
 
-#ycdlajybws .gt_font_italic {
+#zvdedvkukh .gt_font_italic {
   font-style: italic;
 }
 
-#ycdlajybws .gt_super {
+#zvdedvkukh .gt_super {
   font-size: 65%;
 }
 
-#ycdlajybws .gt_footnote_marks {
+#zvdedvkukh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ycdlajybws .gt_asterisk {
+#zvdedvkukh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ycdlajybws .gt_indent_1 {
+#zvdedvkukh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ycdlajybws .gt_indent_2 {
+#zvdedvkukh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ycdlajybws .gt_indent_3 {
+#zvdedvkukh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ycdlajybws .gt_indent_4 {
+#zvdedvkukh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ycdlajybws .gt_indent_5 {
+#zvdedvkukh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ycdlajybws .katex-display {
+#zvdedvkukh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ycdlajybws div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zvdedvkukh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1238,13 +1239,567 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Comparing both posterior prediction graphs we can see that they are similiar in terms of trend and probability of risk of lung cancer, leading to an interesting revelation that…</p>
-<blockquote class="blockquote">
-<p>Air pollution level is as bad as smoking for probability of getting lung cancer</p>
-</blockquote>
-
-
+<p>The graph clearly indicates that the risk of lung cancer increases with higher levels of air pollution, which may initially seem surprising. Both smoking and air pollution exhibit similar trends in predicting lung cancer risk. To gain a comprehensive understanding, it is crucial to compare their relative impacts and determine how each contributes to the overall risk of developing the disease.</p>
 </section>
+<section id="air-pollution-smoking-vs.-cancer-risk" class="level2">
+<h2 class="anchored" data-anchor-id="air-pollution-smoking-vs.-cancer-risk">Air Pollution + Smoking vs.&nbsp;Cancer Risk</h2>
+<p>To determine which factor—smoking or air pollution—has a greater impact on the risk of lung cancer, a Gaussian model can be constructed. This model will help analyze and compare the influence of each factor, providing a clearer understanding of their relative contributions to the disease.</p>
+<ol type="1">
+<li>Formula</li>
+</ol>
+<p><span class="math inline">\(\text{risk} = \beta_0 + \beta_1 (\text{air\_pollution}) + \beta_2 (\text{smoking}) + \beta_3 (\text{age})_i + + \beta_4 (\text{male}) + \epsilon_i\)</span></p>
+<ol start="2" type="1">
+<li>Table</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div id="consyxrhww" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#consyxrhww table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#consyxrhww thead, #consyxrhww tbody, #consyxrhww tfoot, #consyxrhww tr, #consyxrhww td, #consyxrhww th {
+  border-style: none;
+}
+
+#consyxrhww p {
+  margin: 0;
+  padding: 0;
+}
+
+#consyxrhww .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#consyxrhww .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#consyxrhww .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#consyxrhww .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#consyxrhww .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#consyxrhww .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#consyxrhww .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#consyxrhww .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#consyxrhww .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#consyxrhww .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#consyxrhww .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#consyxrhww .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#consyxrhww .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#consyxrhww .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#consyxrhww .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#consyxrhww .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#consyxrhww .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#consyxrhww .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#consyxrhww .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#consyxrhww .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#consyxrhww .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#consyxrhww .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#consyxrhww .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#consyxrhww .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#consyxrhww .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#consyxrhww .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#consyxrhww .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#consyxrhww .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#consyxrhww .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#consyxrhww .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#consyxrhww .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#consyxrhww .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#consyxrhww .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#consyxrhww .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#consyxrhww .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#consyxrhww .gt_left {
+  text-align: left;
+}
+
+#consyxrhww .gt_center {
+  text-align: center;
+}
+
+#consyxrhww .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#consyxrhww .gt_font_normal {
+  font-weight: normal;
+}
+
+#consyxrhww .gt_font_bold {
+  font-weight: bold;
+}
+
+#consyxrhww .gt_font_italic {
+  font-style: italic;
+}
+
+#consyxrhww .gt_super {
+  font-size: 65%;
+}
+
+#consyxrhww .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#consyxrhww .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#consyxrhww .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#consyxrhww .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#consyxrhww .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#consyxrhww .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#consyxrhww .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#consyxrhww .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#consyxrhww div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th id="<div data-qmd-base64=&quot;KipDaGFyYWN0ZXJpc3RpYyoq&quot;><div class='gt_from_md'><p><strong>Characteristic</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><p><strong>Characteristic</strong></p></th>
+<th id="<div data-qmd-base64=&quot;KipCZXRhKio=&quot;><div class='gt_from_md'><p><strong>Beta</strong></p>
+</div></div>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>Beta</strong></p></th>
+<th id="<div data-qmd-base64=&quot;Kio5NSUgQ0kqKg==&quot;><div class='gt_from_md'><p><strong>95% CI</strong></p>
+</div></div><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><p><strong>95% CI</strong></p>
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">smoking</td>
+<td class="gt_row gt_center" headers="estimate">0.09</td>
+<td class="gt_row gt_center" headers="conf.low">0.07, 0.11</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">air_pollution</td>
+<td class="gt_row gt_center" headers="estimate">0.20</td>
+<td class="gt_row gt_center" headers="conf.low">0.18, 0.22</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">gender</td>
+<td class="gt_row gt_center" headers="estimate"><br>
+</td>
+<td class="gt_row gt_center" headers="conf.low"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;genderMale</td>
+<td class="gt_row gt_center" headers="estimate">-0.03</td>
+<td class="gt_row gt_center" headers="conf.low">-0.11, 0.05</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">age</td>
+<td class="gt_row gt_center" headers="estimate">0.00</td>
+<td class="gt_row gt_center" headers="conf.low">0.00, 0.00</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="even">
+<td colspan="3" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span>
+<p>CI = Credible Interval</p></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Heatmap of Posterior Prediction (Smoking + Pollution)</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="models_files/figure-html/Final Comparative Model-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Air pollution has a greater impact on lung cancer risk compared to smoking. The impact of air pollution is significantly higher, indicating that reducing air pollution is more crucial for lowering lung cancer risk than reducing smoking. Addressing air pollution should be a priority in lung cancer prevention strategies.</p>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<p>To determine which factor, smoking or air pollution, has a greater impact on lung cancer risk and quantify this difference, we need to compare their regression coefficients and their credible intervals.</p>
+<ol type="1">
+<li>Regression Coefficients and Credible Intervals:</li>
+</ol>
+<ul>
+<li><strong>Smoking</strong>: <span class="math inline">\(\beta_2 = 0.09\)</span> (95% CI: 0.07, 0.11)</li>
+<li><strong>Air Pollution</strong>: <span class="math inline">\(\beta_1 = 0.20\)</span> (95% CI: 0.18, 0.22)</li>
+</ul>
+<ol start="2" type="1">
+<li><p>Comparison: From the coefficients, it is clear that air pollution has a larger impact on lung cancer risk compared to smoking.</p></li>
+<li><p>Difference in Impact: The difference in the impact of air pollution and smoking on lung cancer risk is given by: <span class="math inline">\(\beta_1 - \beta_2 = 0.20 - 0.09 = 0.11\)</span></p></li>
+<li><p>Credible Interval for the Difference: To compute the credible interval for this difference, we can approximate it using the provided credible intervals for the individual coefficients. The variance of the difference of two independent variables is the sum of their variances. However, since we only have the credible intervals, we will assume independence and add the ranges conservatively.</p></li>
+</ol>
+<ul>
+<li><strong>Lower Bound Difference</strong>: <span class="math inline">\(0.18 - 0.11 = 0.07\)</span></li>
+<li><strong>Upper Bound Difference</strong>: <span class="math inline">\(0.22 - 0.07 = 0.15\)</span></li>
+</ul>
+<p>Thus, the credible interval for the difference between the impact of air pollution and smoking is approximately (0.07, 0.15).</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Air pollution has a greater impact on lung cancer risk than smoking, with an estimated difference in their effects of 0.11. The 95% credible interval for this difference is approximately (0.07, 0.15). This means air pollution is worse than smoking in terms of increasing lung cancer risk, with a difference ranging between 0.07 and 0.15 in their respective impacts.</p>
+
+
 </section>
 
 </main> <!-- /main -->

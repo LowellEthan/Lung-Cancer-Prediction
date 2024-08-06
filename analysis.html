@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Source and Relevant Information – Lung Cancer Prediction</title>
+<title>Visual Analysis – Lung Cancer Prediction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analysis.html"> 
+    <a class="nav-link active" href="./analysis.html" aria-current="page"> 
 <span class="menu-text">Visuals</span></a>
   </li>  
   <li class="nav-item">
@@ -105,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Author</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./source.html" aria-current="page"> 
+    <a class="nav-link" href="./source.html"> 
 <span class="menu-text">Source</span></a>
   </li>  
 </ul>
@@ -119,15 +119,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#bar-plot-of-lung-cancer-levels-by-air-pollution-and-smoking" id="toc-bar-plot-of-lung-cancer-levels-by-air-pollution-and-smoking" class="nav-link active" data-scroll-target="#bar-plot-of-lung-cancer-levels-by-air-pollution-and-smoking">Bar Plot of Lung Cancer Levels by Air Pollution and Smoking</a></li>
+  <li><a href="#violin-plot-of-age-distribution-by-gender-for-lung-cancer-risk" id="toc-violin-plot-of-age-distribution-by-gender-for-lung-cancer-risk" class="nav-link" data-scroll-target="#violin-plot-of-age-distribution-by-gender-for-lung-cancer-risk">Violin Plot of Age Distribution by Gender for Lung Cancer Risk</a></li>
+  <li><a href="#heatmap-of-correlations" id="toc-heatmap-of-correlations" class="nav-link" data-scroll-target="#heatmap-of-correlations">Heatmap of Correlations</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Source and Relevant Information</h1>
+<h1 class="title">Visual Analysis</h1>
 </div>
 
 
@@ -144,10 +152,48 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>I used the <a href="https://www.kaggle.com/datasets/thedevastator/cancer-patients-and-air-pollution-a-new-link">Lung Cancer Prediction</a> data-set from Kaggle to complete this model project. This data-set contains information on patients with lung cancer, including their age, gender, air pollution exposure, alcohol use, dust allergy, occupational hazards, genetic risk, chronic lung disease, balanced diet, obesity, smoking, passive smoker, chest pain, coughing of blood, fatigue, weight loss, shortness of breath, wheezing, swallowing difficulty, clubbing of finger nails and snoring.</p>
-<p>The data-set contained clean data, as all individuals were actual patients part of a study publish in the journal Natural Medicine about <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6068713/">Health Effects of Air Pollution in China</a>. Read more about the article to find out about interesting details of how the study was done, and other conclusions that came out of it.</p>
+<p><em>How does the risk of lung cancer vary across different levels of smoking and air pollution exposure?</em></p>
+<section id="bar-plot-of-lung-cancer-levels-by-air-pollution-and-smoking" class="level2">
+<h2 class="anchored" data-anchor-id="bar-plot-of-lung-cancer-levels-by-air-pollution-and-smoking">Bar Plot of Lung Cancer Levels by Air Pollution and Smoking</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This stacked bar plot illustrates the distribution of lung cancer risk levels across different air pollution categories, with further segmentation by smoking intensity. It provides a clear visual representation of how the combination of high air pollution and elevated smoking intensity correlates with increased lung cancer risk. The plot reveals that lung cancer risk is most pronounced in scenarios where both air pollution and smoking levels are high, highlighting the compounded effect of these factors on lung cancer incidence.</p>
+</section>
+<section id="violin-plot-of-age-distribution-by-gender-for-lung-cancer-risk" class="level2">
+<h2 class="anchored" data-anchor-id="violin-plot-of-age-distribution-by-gender-for-lung-cancer-risk">Violin Plot of Age Distribution by Gender for Lung Cancer Risk</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This violin plot illustrates the distribution of age across different gender categories, segmented by lung cancer risk levels. The plot reveals how age varies within each gender and how this variation is further divided by the level of lung cancer risk. The width of each violin plot indicates the density of ages, providing a clear view of age distribution patterns. It shows whether certain genders tend to have a wider or narrower range of ages for different lung cancer risk levels. This visualization helps in understanding the demographic characteristics associated with each risk level.</p>
+</section>
+<section id="heatmap-of-correlations" class="level2">
+<h2 class="anchored" data-anchor-id="heatmap-of-correlations">Heatmap of Correlations</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This heatmap illustrates the correlations between various health factors and lung cancer risk, using a dataset of 1,000 patients. The color gradient ranges from blue, indicating strong negative correlations, to red, showing strong positive correlations, with white representing no correlation. Variables such as age, air pollution, smoking, genetic risk, and other health indicators are compared along the x and y axes. The x-axis labels are tilted at 45 degrees for better readability. This visualization helps identify relationships between different factors, highlighting how changes in one variable might be associated with changes in another, and provides insight into the complex interplay of factors influencing lung cancer risk.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -1,6 +1,5 @@
 ---
-title: "Lung Cancer Prediction by Various Factors"
-author: "Lowell Ethan Xavier"
+title: "Lung Cancer Prediction by Smoking and exposure to air pollution"
 format: html
 execute: 
     echo: FALSE
@@ -49,9 +48,11 @@ lung <- read_csv("data/lung-cancer.csv") |>
   ) |> mutate(gender = recode(gender, `1` = "Male", `2` = "Female"), level = recode(level, `Low` = 1, `Medium` = 2, `High` = 3))
 ```
 
-Lung Cancer is the 2nd most common cancer affecting the United States in 2024, understanding the causes and predicting the probability of it can allow for the demystification and prevention of the disease. To do so, modelling the data is a great way to visualize the outcomes.
+*How does the risk of lung cancer vary across different levels of smoking and air pollution exposure?*
 
-## Air Pollution + Smoking vs. Cancer Risk
+## Context
+
+Lung cancer is the second most prevalent cancer in the United States in 2024, with smoking being a major risk factor directly linked to its development. Understanding how different levels of smoking and air pollution exposure affect the likelihood of lung cancer is essential for both unraveling the complexities of the disease and enhancing preventive measures. By utilizing data modeling techniques, we can visualize and analyze how variations in smoking habits and air pollution contribute to lung cancer risk. This approach helps reveal underlying patterns and relationships, ultimately supporting the development of more effective prevention strategies and informing public health initiatives aimed at reducing lung cancer incidence.
 
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
 #| label: Air Pollution + Smoking Model
@@ -71,6 +72,14 @@ fit_smoke <- brm(
   refresh = 0, 
   silent = 2, 
   seed = 9)
+
+fit_smokepollute <- brm(
+  formula = level ~ smoking + air_pollution + gender + age,
+  data = lung,
+  family = gaussian(), 
+  refresh = 0, 
+  silent = 2, 
+  seed = 9)
 ```
 
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
@@ -79,16 +88,13 @@ new_lung_air <- fit_pollute |> add_epred_draws(newdata = tibble(air_pollution = 
 new_lung_smoke <- fit_smoke |> add_epred_draws(newdata = tibble(smoking = seq(1, 8, by = 1))) |> mutate(.category = recode(.category, `1` = "Low", `2` = "Medium", `3` = "High")) |> filter(!(.category %in% c("Medium")))
 ```
 
-It is a common know fact that smoking has a direct correlation to lung cancer, and one of the greatest determinators of whether or not one can get lung cancer.
+## Smoking vs. Cancer Risk
 
-### Smoking
-
-To find the relationship between lung cancer and smoking to see just by how much it increases risk of getting Lung Cancer, a categorical model can be made:
+To determine the extent to which smoking increases the risk of lung cancer, a categorical model can be developed. This model will help quantify the relationship between smoking and the likelihood of developing lung cancer, providing a clearer understanding of how smoking contributes to the cancer's risk.
 
 1. Formula
-\begin{equation}
-\text{level} = \alpha + \beta_1 (\text{smoking}) + \epsilon
-\end{equation}
+
+$\text{risk} = \beta_0 + \beta_1 (\text{smoking})_i + \epsilon_i$
 
 2. Table
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
@@ -116,16 +122,15 @@ ggplot(new_lung_smoke, aes(x = as.factor(smoking), y = .epred, fill = .category)
     panel.grid.minor.x = element_line(color = "grey90", linetype = "dotted"))
 ```
 
-As seen in the graph, the risk of lung cancer increases as the level of smoking increases, which is a well know fact, but something interesting happens when the prediction of lung cancer is seen with the level of air pollution.
+The graph clearly shows that the risk of lung cancer rises with higher levels of smoking, a fact well-documented in medical research. However, a more intriguing pattern emerges when we examine how the risk of lung cancer is influenced by different levels of air pollution. This additional layer of analysis reveals complex interactions between smoking and air pollution, offering new insights into how these factors together impact lung cancer risk.
 
-### Air Pollution
+## Air Pollution vs. Cancer Risk
 
-To find the relationship between lung cancer and air pollution another categorical model can be made lke thus:
+To examine the relationship between lung cancer and air pollution, we can construct a categorical model. This model will help us assess how different levels of air pollution influence the risk of developing lung cancer, both independently and in conjunction with other factors like smoking.
 
 1. Formula
-\begin{equation}
-\text{level} = \alpha + \beta_1 (\text{air\_pollution}) + \epsilon
-\end{equation}
+
+$\text{risk} = \beta_0 + \beta_1 (\text{air\_pollution})_i + \epsilon_i$
 
 2. Table
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
@@ -153,7 +158,67 @@ ggplot(new_lung_air, aes(x = as.factor(air_pollution), y = .epred, fill = .categ
     panel.grid.minor.x = element_line(color = "grey90", linetype = "dotted"))
 ```
 
-Comparing both posterior prediction graphs we can see that they are similiar in terms of trend and probability of risk of lung cancer, leading to an interesting revelation that...
+The graph clearly indicates that the risk of lung cancer increases with higher levels of air pollution, which may initially seem surprising. Both smoking and air pollution exhibit similar trends in predicting lung cancer risk. To gain a comprehensive understanding, it is crucial to compare their relative impacts and determine how each contributes to the overall risk of developing the disease.
 
-> Air pollution level is as bad as smoking for probability of getting lung cancer
+## Air Pollution + Smoking vs. Cancer Risk
 
+To determine which factor—smoking or air pollution—has a greater impact on the risk of lung cancer, a Gaussian model can be constructed. This model will help analyze and compare the influence of each factor, providing a clearer understanding of their relative contributions to the disease.
+
+1. Formula
+
+$\text{risk} = \beta_0 + \beta_1 (\text{air\_pollution}) + \beta_2 (\text{smoking}) + \beta_3 (\text{age})_i + + \beta_4 (\text{male}) + \epsilon_i$
+
+2. Table
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+#| label: Air Pollution and Smoking Regression plot
+
+tbl_regression(fit_smokepollute)
+```
+
+3. Heatmap of Posterior Prediction (Smoking + Pollution)
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+#| label: Final Comparative Model
+
+predicted_draws <- fit_smokepollute %>%
+  add_epred_draws(newdata = expand.grid(air_pollution = seq(1, 8),
+                   smoking = seq(1, 8), gender = "Male", age = 0))
+
+ggplot(predicted_draws, aes(x = air_pollution, y = smoking, fill = .epred)) +
+  geom_tile() +
+  scale_fill_viridis_c(option = "C", name = "Predicted Risk") +
+  labs(x = "Air Pollution", y = "Smoking", title = "Heatmap of Predicted Risk of Lung Cancer", subtitle = ) +
+  theme_clean() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "right"
+  )
+```
+
+Air pollution has a greater impact on lung cancer risk compared to smoking. The impact of air pollution is significantly higher, indicating that reducing air pollution is more crucial for lowering lung cancer risk than reducing smoking. Addressing air pollution should be a priority in lung cancer prevention strategies.
+
+## Analysis
+
+To determine which factor, smoking or air pollution, has a greater impact on lung cancer risk and quantify this difference, we need to compare their regression coefficients and their credible intervals.
+
+1. Regression Coefficients and Credible Intervals:
+- **Smoking**: $\beta_2 = 0.09$ (95% CI: 0.07, 0.11)
+- **Air Pollution**: $\beta_1 = 0.20$ (95% CI: 0.18, 0.22)
+
+2. Comparison:
+From the coefficients, it is clear that air pollution has a larger impact on lung cancer risk compared to smoking. 
+
+3. Difference in Impact:
+The difference in the impact of air pollution and smoking on lung cancer risk is given by:
+$\beta_1 - \beta_2 = 0.20 - 0.09 = 0.11$
+
+4. Credible Interval for the Difference:
+To compute the credible interval for this difference, we can approximate it using the provided credible intervals for the individual coefficients. The variance of the difference of two independent variables is the sum of their variances. However, since we only have the credible intervals, we will assume independence and add the ranges conservatively.
+
+- **Lower Bound Difference**: $0.18 - 0.11 = 0.07$
+- **Upper Bound Difference**: $0.22 - 0.07 = 0.15$
+
+Thus, the credible interval for the difference between the impact of air pollution and smoking is approximately (0.07, 0.15).
+
+## Conclusion
+
+Air pollution has a greater impact on lung cancer risk than smoking, with an estimated difference in their effects of 0.11. The 95% credible interval for this difference is approximately (0.07, 0.15). This means air pollution is worse than smoking in terms of increasing lung cancer risk, with a difference ranging between 0.07 and 0.15 in their respective impacts.

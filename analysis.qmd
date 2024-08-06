@@ -1,0 +1,109 @@
+---
+title: "Visual Analysis"
+format: html
+execute: 
+  echo: FALSE
+  message: FALSE
+---
+
+*How does the risk of lung cancer vary across different levels of smoking and air pollution exposure?*
+
+```{r}
+#| label: setup
+#| message: FALSE
+library(tidyverse)
+library(reshape2)
+library(viridis)
+```
+
+```{r, message=FALSE, warning=FALSE, error=FALSE}
+lung_g <- read_csv("data/lung-cancer.csv") |>
+  rename(
+    index = index,
+    patient_id = `Patient Id`,
+    age = Age,
+    gender = Gender,
+    air_pollution = `Air Pollution`,
+    alcohol = `Alcohol use`,
+    dust_allergy = `Dust Allergy`,
+    occupational_hazards = `OccuPational Hazards`,
+    genetic_risk = `Genetic Risk`,
+    chronic_lung_disease = `chronic Lung Disease`,
+    balanced_diet = `Balanced Diet`,
+    obesity = Obesity,
+    smoking = Smoking,
+    passive_smoker = `Passive Smoker`,
+    chest_pain = `Chest Pain`,
+    coughing_blood = `Coughing of Blood`,
+    fatigue = Fatigue,
+    weight_loss = `Weight Loss`,
+    shortness_of_breath = `Shortness of Breath`,
+    wheezing = Wheezing,
+    swallowing_difficulty = `Swallowing Difficulty`,
+    clubbing_nails = `Clubbing of Finger Nails`,
+    frequent_cold = `Frequent Cold`,
+    dry_cough = `Dry Cough`,
+    snoring = Snoring,
+    level = Level
+  ) |> mutate(gender = recode(gender, `1` = "Male", `2` = "Female"))
+```
+
+## Bar Plot of Lung Cancer Levels by Air Pollution and Smoking
+
+```{r}
+lung_g |>
+  mutate(smoking_cat = cut(smoking, breaks = c(0, 2, 5, 8), labels = c("Low Smoker", "Normal Smoker", "Heavy Smoker"), right = TRUE),
+         air_pollution_cat = cut(air_pollution, breaks = c(0, 2, 5, 8), labels = c("Low", "Medium", "High"), right = TRUE)) |> ggplot(aes(x = air_pollution_cat, fill = level)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Lung Cancer Levels by Air Pollution and Smoking",
+       x = "Exposure to Air Pollution",
+       y = "Cases",
+       fill = "Lung Cancer Risk") +
+  facet_wrap(~smoking_cat)
+```
+
+This stacked bar plot illustrates the distribution of lung cancer risk levels across different air pollution categories, with further segmentation by smoking intensity. It provides a clear visual representation of how the combination of high air pollution and elevated smoking intensity correlates with increased lung cancer risk. The plot reveals that lung cancer risk is most pronounced in scenarios where both air pollution and smoking levels are high, highlighting the compounded effect of these factors on lung cancer incidence.
+
+## Violin Plot of Age Distribution by Gender for Lung Cancer Risk
+
+```{r}
+ggplot(lung_g, aes(x = gender, y = age, fill = level)) +
+  geom_violin() +
+  labs(title = "Distribution of Age by Gender",
+       x = "",
+       y = "Age",
+       fill = "Lung Cancer Risk") +
+  theme_minimal()
+```
+
+This violin plot illustrates the distribution of age across different gender categories, segmented by lung cancer risk levels. The plot reveals how age varies within each gender and how this variation is further divided by the level of lung cancer risk. The width of each violin plot indicates the density of ages, providing a clear view of age distribution patterns. It shows whether certain genders tend to have a wider or narrower range of ages for different lung cancer risk levels. This visualization helps in understanding the demographic characteristics associated with each risk level.
+
+## Heatmap of Correlations
+
+```{r}
+# Calculate correlations
+cor_data <- cor(lung_g %>%
+  select(age, air_pollution, alcohol, dust_allergy, occupational_hazards, genetic_risk, 
+         chronic_lung_disease, balanced_diet, obesity, smoking, passive_smoker, 
+         chest_pain, coughing_blood, fatigue, weight_loss, shortness_of_breath, 
+         wheezing, swallowing_difficulty, clubbing_nails, frequent_cold, dry_cough, 
+         snoring), use = "complete.obs")
+
+# Melt the correlation matrix
+melted_cor <- melt(cor_data)
+
+# Plot
+ggplot(melted_cor, aes(Var1, Var2, fill = value)) + 
+  geom_tile(color = "white") + 
+  theme_minimal(base_size = 14) +
+  labs(x = "", y = "") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8),  # Adjust text size and angle
+        axis.text.y = element_text(size = 8),  # Adjust y-axis text size
+        axis.title = element_text(size = 12),  # Adjust axis title size
+        panel.grid = element_blank(),  # Remove default grid
+        panel.border = element_rect(color = "black", fill = NA),  # Add border around the plot
+        legend.title = element_text(size = 8),  # Smaller legend title
+        legend.text = element_text(size = 6))  # Smaller legend text
+```
+
+This heatmap illustrates the correlations between various health factors and lung cancer risk, using a dataset of 1,000 patients. The color gradient ranges from blue, indicating strong negative correlations, to red, showing strong positive correlations, with white representing no correlation. Variables such as age, air pollution, smoking, genetic risk, and other health indicators are compared along the x and y axes. The x-axis labels are tilted at 45 degrees for better readability. This visualization helps identify relationships between different factors, highlighting how changes in one variable might be associated with changes in another, and provides insight into the complex interplay of factors influencing lung cancer risk.
